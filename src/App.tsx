@@ -296,7 +296,7 @@ export default function DaviTattooLanding() {
         <InfoBar onClose={() => setShowStudio(false)}>
           <h3 className="mb-4 text-xl font-bold sm:text-2xl">Nosso Estúdio</h3>
           <img
-            src="https://i.pinimg.com/736x/0e/0f/6b/0e0f6bce03e367c2a3e02a8d951cd4f0.jpg"
+            src="https://i.pinimg.com/736x/5e/eb/7a/5eeb7a13e27304f1de6955e145ddcdd1.jpg"
             alt="Estúdio"
             className="mb-4 w-full rounded-xl"
           />
@@ -311,14 +311,14 @@ export default function DaviTattooLanding() {
           <h3 className="mb-4 text-xl font-bold sm:text-2xl">Contato</h3>
           <div className="mb-4 flex items-center space-x-4">
             <img
-              src="https://i.pravatar.cc/100?img=32"
+              src="https://i.pinimg.com/736x/bd/a9/9c/bda99ccdb2ce7cd3d18d1fc98ff2bec5.jpg"
               alt="Contato"
               className="h-16 w-16 rounded-full border border-white"
             />
             <div>
-              <p className="text-lg font-semibold">Cristiane</p>
+              <p className="text-lg font-semibold">Daniel Davi</p>
               <p className="text-sm text-neutral-300">
-                Especialista em agendamentos e atendimento ao cliente.
+                Especialista em Tatuagens .
               </p>
             </div>
           </div>
