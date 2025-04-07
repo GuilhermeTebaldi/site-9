@@ -185,7 +185,7 @@ export default function DaviTattooLanding() {
         className="relative flex h-[85vh] items-end justify-start bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://i.pinimg.com/736x/d8/71/f3/d871f37581fa3f710a8079afe4a76632.jpg')",
+            "url('https://i.pinimg.com/736x/38/c9/ab/38c9abb43224ac51f3421fa0074e899c.jpg')",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
