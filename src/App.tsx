@@ -4,14 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import type { ReactNode } from "react";
 
 export default function DaviTattooLanding() {
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [showStudio, setShowStudio] = useState<boolean>(false);
-  const [showContato, setShowContato] = useState<boolean>(false);
-  const [showPortfolio, setShowPortfolio] = useState<boolean>(false);
-  const [nome, setNome] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
+  const [showStudio, setShowStudio] = useState(false);
+  const [showContato, setShowContato] = useState(false);
+  const [showPortfolio, setShowPortfolio] = useState(false);
+  const [nome, setNome] = useState("");
   const [estilos, setEstilos] = useState<string[]>([]);
 
-  const estiloOptions: string[] = [
+  const estiloOptions = [
     "Old School",
     "Blackwork",
     "Realismo",
@@ -64,7 +64,7 @@ export default function DaviTattooLanding() {
   };
 
   const toggleEstilo = (estilo: string) => {
-    setEstilos((prev: string[]) =>
+    setEstilos((prev) =>
       prev.includes(estilo)
         ? prev.filter((e) => e !== estilo)
         : [...prev, estilo],
@@ -79,7 +79,7 @@ export default function DaviTattooLanding() {
     onClose: () => void;
   }) => (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-      <div className="w-full max-w-md rounded-xl border border-white bg-black bg-opacity-80 p-8">
+      <div className="w-full max-w-md rounded-xl border border-white bg-black bg-opacity-80 p-6 sm:p-8">
         {children}
         <div className="mt-6 text-right">
           <Button
@@ -96,32 +96,34 @@ export default function DaviTattooLanding() {
   return (
     <div className="min-h-screen bg-black font-sans text-white">
       <header className="fixed top-0 z-50 flex w-full items-center justify-between bg-gradient-to-b from-black via-black/70 to-transparent p-4">
-        <h1 className="text-2xl font-bold tracking-wide">DAVI TATTOO</h1>
-        <nav className="hidden space-x-6 md:flex">
-          <a href="#" className="hover:underline">
+        <h1 className="text-xl font-bold tracking-wide sm:text-2xl">
+          DAVI TATTOO
+        </h1>
+        <nav className="hidden space-x-4 sm:space-x-6 md:flex">
+          <a href="#" className="text-sm hover:underline">
             Início
           </a>
           <button
             onClick={() => setShowPortfolio(true)}
-            className="hover:underline"
+            className="text-sm hover:underline"
           >
             Portfólio
           </button>
           <button
             onClick={() => setShowModal(true)}
-            className="hover:underline"
+            className="text-sm hover:underline"
           >
             Agendamento
           </button>
           <button
             onClick={() => setShowStudio(true)}
-            className="hover:underline"
+            className="text-sm hover:underline"
           >
             Estúdio
           </button>
           <button
             onClick={() => setShowContato(true)}
-            className="hover:underline"
+            className="text-sm hover:underline"
           >
             Contato
           </button>
@@ -129,58 +131,63 @@ export default function DaviTattooLanding() {
       </header>
 
       <section
-        className="relative flex h-[90vh] items-end justify-start bg-cover bg-center"
+        className="relative flex h-[85vh] items-end justify-start bg-cover bg-center"
         style={{
           backgroundImage:
             "url('https://i.pinimg.com/736x/d8/71/f3/d871f37581fa3f710a8079afe4a76632.jpg')",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-        <div className="relative z-10 max-w-xl p-10">
-          <h2 className="mb-4 text-4xl font-extrabold leading-tight md:text-6xl">
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        <div className="relative z-10 max-w-lg p-6 sm:p-10">
+          <h2 className="mb-4 text-3xl font-extrabold leading-tight sm:text-5xl">
             Arte na pele, identidade na alma
           </h2>
-          <p className="mb-6 text-lg md:text-xl">
-            Transformamos histórias em tatuagens únicas com estilo e
-            personalidade.
+          <p className="mb-6 text-base sm:text-lg">
+            Tatuagens únicas com estilo e personalidade.
           </p>
-          <div className="space-x-4">
+          <div className="flex flex-wrap gap-3">
             <Button
               onClick={() => setShowModal(true)}
-              className="bg-white px-6 py-2 font-semibold text-black hover:bg-neutral-300"
+              className="bg-white px-5 py-2 text-sm font-semibold text-black hover:bg-neutral-300"
             >
               Agendar agora
             </Button>
-            <Button className="bg-neutral-700 px-6 py-2 text-white hover:bg-neutral-600">
+            <Button
+              onClick={() => setShowPortfolio(true)}
+              className="bg-neutral-700 px-5 py-2 text-sm text-white hover:bg-neutral-600"
+            >
               Ver portfólio
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="fade-section px-6 py-10">
-        <h3 className="mb-4 text-2xl font-semibold">Últimas Tatuagens</h3>
-        <div className="scrollbar-hide flex space-x-4 overflow-x-scroll">
+      <section className="fade-section px-4 py-10">
+        <h3 className="mb-4 text-xl font-semibold sm:text-2xl">
+          Últimas Tatuagens
+        </h3>
+        <div className="scrollbar-hide flex gap-4 overflow-x-auto">
           {imagens.map((url, i) => (
             <Card
               key={i}
-              className="h-[300px] min-w-[200px] cursor-pointer bg-neutral-800 transition-transform duration-300 hover:scale-105"
+              className="h-[240px] min-w-[160px] cursor-pointer bg-neutral-800 transition-transform duration-300 hover:scale-105 sm:h-[300px] sm:min-w-[200px]"
             >
               <CardContent
                 className="h-full w-full bg-cover bg-center"
                 style={{ backgroundImage: `url('${url}')` }}
               >
-                {" "}
+                {/* Adicionando fragmento vazio para satisfazer children */}
+                <> </>
               </CardContent>
             </Card>
           ))}
         </div>
       </section>
 
-      {/* Modais e InfoBars */}
+      {/* Reaproveitando InfoBars */}
       {showModal && (
         <InfoBar onClose={() => setShowModal(false)}>
-          <h3 className="mb-4 text-2xl font-bold">Agendar Sessão</h3>
+          <h3 className="mb-4 text-xl font-bold sm:text-2xl">Agendar Sessão</h3>
           <input
             type="text"
             placeholder="Seu nome"
@@ -217,7 +224,9 @@ export default function DaviTattooLanding() {
 
       {showPortfolio && (
         <InfoBar onClose={() => setShowPortfolio(false)}>
-          <h3 className="mb-4 text-2xl font-bold">Exemplo de Portfólio</h3>
+          <h3 className="mb-4 text-xl font-bold sm:text-2xl">
+            Exemplo de Portfólio
+          </h3>
           <div className="space-y-4">
             <img
               src="https://i.pinimg.com/736x/d8/71/f3/d871f37581fa3f710a8079afe4a76632.jpg"
@@ -234,7 +243,7 @@ export default function DaviTattooLanding() {
 
       {showStudio && (
         <InfoBar onClose={() => setShowStudio(false)}>
-          <h3 className="mb-4 text-2xl font-bold">Nosso Estúdio</h3>
+          <h3 className="mb-4 text-xl font-bold sm:text-2xl">Nosso Estúdio</h3>
           <img
             src="https://i.pinimg.com/736x/0e/0f/6b/0e0f6bce03e367c2a3e02a8d951cd4f0.jpg"
             alt="Estúdio"
@@ -248,7 +257,7 @@ export default function DaviTattooLanding() {
 
       {showContato && (
         <InfoBar onClose={() => setShowContato(false)}>
-          <h3 className="mb-4 text-2xl font-bold">Contato</h3>
+          <h3 className="mb-4 text-xl font-bold sm:text-2xl">Contato</h3>
           <div className="mb-4 flex items-center space-x-4">
             <img
               src="https://i.pravatar.cc/100?img=32"
@@ -266,11 +275,11 @@ export default function DaviTattooLanding() {
         </InfoBar>
       )}
 
-      <footer className="mt-10 bg-neutral-900 p-10 text-sm text-neutral-400">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <footer className="mt-10 bg-neutral-900 px-6 py-10 text-xs text-neutral-400 sm:text-sm">
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
           <div>
             <p className="mb-2">Idioma</p>
-            <select className="rounded bg-neutral-800 p-1 text-white">
+            <select className="w-full rounded bg-neutral-800 p-1 text-white">
               <option>Português</option>
               <option>English</option>
             </select>
@@ -293,7 +302,7 @@ export default function DaviTattooLanding() {
             <p>WhatsApp</p>
           </div>
         </div>
-        <p className="mt-8">
+        <p className="mt-8 text-center">
           © 2025 DAVI TATTOO. Todos os direitos reservados.
         </p>
       </footer>
