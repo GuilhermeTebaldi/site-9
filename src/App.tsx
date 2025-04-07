@@ -128,7 +128,7 @@ export default function DaviTattooLanding() {
         {mobileMenuOpen && (
           <motion.div
             ref={mobileMenuRef}
-            className="fixed inset-0 z-40 bg-black/90 p-6"
+            className="absolute bottom-0 left-0 right-0 top-[64px] z-40 bg-black/90 p-6"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
