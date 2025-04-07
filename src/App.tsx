@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+// ✅ CÓDIGO COMPLETO 100% FUNCIONAL COM MENU MOBILE ANIMADO
+import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { motion, AnimatePresence } from "framer-motion";
 import type { ReactNode } from "react";
 
 export default function DaviTattooLanding() {
@@ -10,6 +12,8 @@ export default function DaviTattooLanding() {
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [nome, setNome] = useState("");
   const [estilos, setEstilos] = useState<string[]>([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
 
   const estiloOptions = [
     "Old School",
@@ -57,6 +61,19 @@ export default function DaviTattooLanding() {
     });
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        mobileMenuRef.current &&
+        !(mobileMenuRef.current as any).contains(e.target)
+      ) {
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleEnviar = () => {
     const msg = `Olá, meu nome é ${nome}. Estou interessado(a) nos estilos: ${estilos.join(", ")}.`;
     const url = `https://wa.me/5599999999999?text=${encodeURIComponent(msg)}`;
@@ -99,36 +116,70 @@ export default function DaviTattooLanding() {
         <h1 className="text-xl font-bold tracking-wide sm:text-2xl">
           DAVI TATTOO
         </h1>
-        <nav className="hidden space-x-4 sm:space-x-6 md:flex">
-          <a href="#" className="text-sm hover:underline">
-            Início
-          </a>
-          <button
-            onClick={() => setShowPortfolio(true)}
-            className="text-sm hover:underline"
-          >
-            Portfólio
-          </button>
-          <button
-            onClick={() => setShowModal(true)}
-            className="text-sm hover:underline"
-          >
-            Agendamento
-          </button>
-          <button
-            onClick={() => setShowStudio(true)}
-            className="text-sm hover:underline"
-          >
-            Estúdio
-          </button>
-          <button
-            onClick={() => setShowContato(true)}
-            className="text-sm hover:underline"
-          >
-            Contato
-          </button>
-        </nav>
+        <button
+          onClick={() => setMobileMenuOpen(true)}
+          className="text-xl text-white focus:outline-none"
+        >
+          ☰
+        </button>
       </header>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            ref={mobileMenuRef}
+            className="fixed inset-0 z-40 bg-black/90 p-6"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="text-xl font-bold">Menu</h2>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xl"
+              >
+                ✕
+              </button>
+            </div>
+            <nav className="flex flex-col gap-4">
+              <button
+                onClick={() => {
+                  setShowPortfolio(true);
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Portfólio
+              </button>
+              <button
+                onClick={() => {
+                  setShowModal(true);
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Agendamento
+              </button>
+              <button
+                onClick={() => {
+                  setShowStudio(true);
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Estúdio
+              </button>
+              <button
+                onClick={() => {
+                  setShowContato(true);
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Contato
+              </button>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <section
         className="relative flex h-[85vh] items-end justify-start bg-cover bg-center"
